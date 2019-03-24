@@ -1,0 +1,33 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "legacyDecorators": true
+    },
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "flowtype/no-types-missing-file-annotation": 2,
+    "no-new-func": "off",
+    "import/prefer-default-export": "off",
+    "no-underscore-dangle": "off",
+    "no-restricted-syntax": "off",
+    "no-continue": "off",
+    "no-await-in-loop": "off",
+    "no-void": "off",
+    "no-var": "off",
+    "no-console": "off",
+    "no-script-url": "off",
+    "consistent-return": "off",
+    "no-return-assign": "off",
+    "camelcase": "off",
+    "no-param-reassign": "off",
+    "no-plusplus": "off",
+    "class-methods-use-this": "off",
+    "prettier/prettier": "warn"
+  },
+  "extends": ["prettier"]
+}
