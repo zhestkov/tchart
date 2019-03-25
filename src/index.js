@@ -457,7 +457,7 @@ class Chart {
 
     const mouseDownHandler = e => {
       this.selectedX = -1;
-      const x = e.clientX;
+      const x = e.touches && e.touches[0] ? e.touches[0].clientX : e.clientX;
 
       if (
         x >=
@@ -498,7 +498,7 @@ class Chart {
       if (leftDragging || rightDragging) {
         e.stopPropagation();
 
-        const x = e.clientX;
+        const x = e.changedTouches && e.changedTouches[0] ? e.changedTouches[0].clientX : e.clientX;
 
         if (leftDragging) {
           let newLeft = x - leftCoordinate;
@@ -540,9 +540,16 @@ class Chart {
       }
     };
 
-    this.offsetWrapper.addEventListener("mousedown", mouseDownHandler);
-    document.addEventListener("mousemove", mouseMoveHandler);
-    document.addEventListener("mouseup", mouseUpHandler);
+    if ("ontouchstart" in window) {
+      // console.log("MOBILE");
+      this.offsetWrapper.addEventListener("touchstart", mouseDownHandler);
+      document.addEventListener("touchmove", mouseMoveHandler);
+      document.addEventListener("touchend", mouseUpHandler);  
+    } else {
+      this.offsetWrapper.addEventListener("mousedown", mouseDownHandler);
+      document.addEventListener("mousemove", mouseMoveHandler);
+      document.addEventListener("mouseup", mouseUpHandler);      
+    }
   }
 
   createToggleCheckboxes() {
